@@ -12,9 +12,9 @@ movies = pickle.load(open('movies.pkl', 'rb'))
 similarity = pickle.load(open('similarity.pkl', 'rb'))
 
 # 🔑 PUT YOUR TMDB API KEY HERE
-API_KEY = os.getenv("TMDB_API_KEY")
+API_KEY = st.secrets["TMDB_API_KEY"]
 if API_KEY is None:
-    API_KEY = "your_actual_api_key_here"
+    API_KEY = "497043cd6db30d75bb62ad1db504bc46"
 
 # Fetch movie details
 def fetch_movie_details(movie_id):
