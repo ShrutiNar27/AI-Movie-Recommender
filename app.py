@@ -1,14 +1,17 @@
-import streamlit as st
+import os
 import pickle
-import pandas as pd
 import requests
+import streamlit as st
+import pandas as pd
 
-# Load data
-movies = pickle.load(open('movies.pkl','rb'))
-similarity = pickle.load(open('similarity.pkl','rb'))
+# Auto-build model if pkl files don't exist
+if not os.path.exists("movies.pkl") or not os.path.exists("similarity.pkl"):
+    import model  # this will generate the pkl files
+
+movies = pickle.load(open('movies.pkl', 'rb'))
+similarity = pickle.load(open('similarity.pkl', 'rb'))
 
 # 🔑 PUT YOUR TMDB API KEY HERE
-import os
 API_KEY = os.getenv("TMDB_API_KEY")
 if API_KEY is None:
     API_KEY = "your_actual_api_key_here"
